@@ -1,0 +1,316 @@
+[
+  {
+    "id": "messi-ronaldo",
+    "sport": "football",
+    "aliases": ["messi ronaldo", "ronaldo messi", "messi vs ronaldo", "ronaldo vs messi"],
+    "entity_a": {
+      "name": "Lionel Messi",
+      "short": "Messi",
+      "accent": "#78B6FF",
+      "aliases": ["messi", "lionel messi", "leo messi"],
+      "stats": {"Ballon d'Or": 8, "UCL": 4, "World Cups": 1, "Club goals": 850}
+    },
+    "entity_b": {
+      "name": "Cristiano Ronaldo",
+      "short": "Ronaldo",
+      "accent": "#E8B923",
+      "aliases": ["ronaldo", "cristiano ronaldo", "cristiano", "cr7"],
+      "stats": {"Ballon d'Or": 5, "UCL": 5, "World Cups": 0, "Club goals": 890}
+    },
+    "h2h": {"meetings": 36, "a_wins": 16, "b_wins": 10, "draws": 10, "label": "Meetings as opponents"},
+    "banter_hook": "Messi leads the Ballon d'Or tally; Ronaldo owns the UCL edge.",
+    "facts": [
+      "Messi has 8 Ballons d'Or to Ronaldo's 5.",
+      "Ronaldo has 5 Champions Leagues to Messi's 4.",
+      "Messi won the 2022 World Cup; Ronaldo has none.",
+      "Club-goal ledger sits roughly Messi 850, Ronaldo 890."
+    ]
+  },
+  {
+    "id": "real-madrid-barcelona",
+    "sport": "football",
+    "aliases": ["el clasico", "clasico", "real madrid barcelona", "barcelona real madrid"],
+    "entity_a": {
+      "name": "Real Madrid",
+      "short": "Madrid",
+      "accent": "#F5F5F5",
+      "aliases": ["real madrid", "real", "madrid", "los blancos"],
+      "stats": {"UCL": 15, "La Liga": 36, "Club World Cups": 5, "Clasicos": 105}
+    },
+    "entity_b": {
+      "name": "Barcelona",
+      "short": "Barca",
+      "accent": "#A50044",
+      "aliases": ["barcelona", "barca", "barça", "blaugrana"],
+      "stats": {"UCL": 5, "La Liga": 28, "Club World Cups": 3, "Clasicos": 101}
+    },
+    "h2h": {"meetings": 258, "a_wins": 105, "b_wins": 101, "draws": 52, "label": "El Clasico meetings"},
+    "banter_hook": "Clasico is a coin that landed on its edge: Madrid own the European nights, Barca the tiki-taka scar tissue.",
+    "facts": [
+      "Real Madrid have 15 European Cups to Barcelona's 5.",
+      "League titles sit roughly 36 to 28 for Madrid.",
+      "The fixture is still a split decision across more than 250 meetings."
+    ]
+  },
+  {
+    "id": "real-madrid-manchester-city",
+    "sport": "football",
+    "aliases": ["real madrid manchester city", "madrid city", "madrid vs city"],
+    "entity_a": {
+      "name": "Real Madrid",
+      "short": "Madrid",
+      "accent": "#F5F5F5",
+      "aliases": ["real madrid", "real", "madrid", "los blancos"],
+      "stats": {"UCL": 15, "UCL finals": 18, "Recent ties": 3, "Knockout edge": 2}
+    },
+    "entity_b": {
+      "name": "Manchester City",
+      "short": "City",
+      "accent": "#6CABDD",
+      "aliases": ["manchester city", "man city", "city", "mcfc"],
+      "stats": {"UCL": 1, "Premier League": 8, "Recent ties": 3, "Treble": 1}
+    },
+    "h2h": {"meetings": 6, "a_wins": 3, "b_wins": 2, "draws": 1, "label": "Recent competitive meetings"},
+    "banter_hook": "City's 2023 treble punched the throne; Madrid keep answering on European nights.",
+    "facts": [
+      "Madrid knocked City out of the 2022 Champions League semi on a 6-5 aggregate.",
+      "City won the 2023 semi and the treble.",
+      "Madrid won the 2024 quarter-final on penalties after a 4-4 aggregate."
+    ]
+  },
+  {
+    "id": "arsenal-tottenham",
+    "sport": "football",
+    "aliases": ["north london derby", "arsenal tottenham", "arsenal spurs", "gunners spurs"],
+    "entity_a": {
+      "name": "Arsenal",
+      "short": "Arsenal",
+      "accent": "#EF0107",
+      "aliases": ["arsenal", "gunners", "the gunners"],
+      "stats": {"League titles": 13, "FA Cups": 14, "Invincible seasons": 1, "Bottles": 4}
+    },
+    "entity_b": {
+      "name": "Tottenham",
+      "short": "Spurs",
+      "accent": "#FFFFFF",
+      "aliases": ["tottenham", "spurs", "tottenham hotspur"],
+      "stats": {"League titles": 2, "FA Cups": 8, "League cups": 4, "Last league title": 1961}
+    },
+    "h2h": {"meetings": 200, "a_wins": 82, "b_wins": 58, "draws": 60, "label": "North London derbies"},
+    "banter_hook": "Arsenal's bottle jobs are dated: 2002-03 last-day lore, Leicester in 2015-16, and the 2022-23 eight-point lead handed to City.",
+    "facts": [
+      "Invincibles faded after 2004.",
+      "2002-03 last-day collapse is Leeds-era title lore.",
+      "2015-16 finished second to Leicester.",
+      "2022-23 blew an 8-point lead and lost the league to Manchester City."
+    ]
+  },
+  {
+    "id": "man-united-liverpool",
+    "sport": "football",
+    "aliases": ["manchester united liverpool", "united liverpool", "man united liverpool"],
+    "entity_a": {
+      "name": "Manchester United",
+      "short": "United",
+      "accent": "#DA291C",
+      "aliases": ["manchester united", "man united", "man utd", "united", "mufc"],
+      "stats": {"League titles": 20, "UCL": 3, "FA Cups": 13, "Last league title": 2013}
+    },
+    "entity_b": {
+      "name": "Liverpool",
+      "short": "Liverpool",
+      "accent": "#C8102E",
+      "aliases": ["liverpool", "lfc", "the reds"],
+      "stats": {"League titles": 20, "UCL": 6, "FA Cups": 8, "Last league title": 2025}
+    },
+    "h2h": {"meetings": 220, "a_wins": 84, "b_wins": 76, "draws": 60, "label": "League and cup meetings"},
+    "banter_hook": "United have the history-book weight; Liverpool have the modern European scar and a league title that is not stuck in 2013.",
+    "facts": [
+      "Both sit on 20 English league titles.",
+      "Liverpool have 6 European Cups to United's 3.",
+      "United's last league title was 2012-13."
+    ]
+  },
+  {
+    "id": "india-pakistan",
+    "sport": "cricket",
+    "aliases": ["india pakistan", "ind pak", "india vs pakistan"],
+    "entity_a": {
+      "name": "India",
+      "short": "India",
+      "accent": "#138808",
+      "aliases": ["india", "ind", "team india", "men in blue"],
+      "stats": {"ODI World Cups": 2, "T20 World Cups": 2, "Champions Trophies": 2, "ICC events vs Pak": "dominant"}
+    },
+    "entity_b": {
+      "name": "Pakistan",
+      "short": "Pakistan",
+      "accent": "#01411C",
+      "aliases": ["pakistan", "pak", "shaheens"],
+      "stats": {"ODI World Cups": 1, "T20 World Cups": 1, "Champions Trophies": 1, "ICC events vs Ind": "chasing"}
+    },
+    "h2h": {"meetings": 135, "a_wins": 72, "b_wins": 58, "draws": 5, "label": "ODI meetings"},
+    "banter_hook": "In World Cup lights India keep the receipt; Pakistan keep the chaos and one perfect evening.",
+    "facts": [
+      "India have won the majority of India-Pakistan ODIs.",
+      "Pakistan beat India in the 2021 T20 World Cup.",
+      "India won the 2024 T20 World Cup, including the meeting with Pakistan."
+    ]
+  },
+  {
+    "id": "australia-england-ashes",
+    "sport": "cricket",
+    "aliases": ["ashes", "australia england", "england australia", "the ashes"],
+    "entity_a": {
+      "name": "Australia",
+      "short": "Australia",
+      "accent": "#FFCD00",
+      "aliases": ["australia", "aus", "aussies"],
+      "stats": {"Ashes retained": "often", "World Cups": 6, "Home advantage": "brutal", "Urn": "held"}
+    },
+    "entity_b": {
+      "name": "England",
+      "short": "England",
+      "accent": "#CF142B",
+      "aliases": ["england", "eng"],
+      "stats": {"2005 Ashes": 1, "World Cups": 1, "Bazball": "loud", "Urn": "visiting"}
+    },
+    "h2h": {"meetings": 360, "a_wins": 160, "b_wins": 115, "draws": 85, "label": "Ashes Tests"},
+    "banter_hook": "The urn still prefers an Australian accent; England's answer is 2005 and whatever Bazball is calling itself this week.",
+    "facts": [
+      "Australia have won more Ashes series and more Test matches in the rivalry.",
+      "England's 2005 win is the modern folk tale.",
+      "Australia hold 6 men's ODI World Cups to England's 1."
+    ]
+  },
+  {
+    "id": "brazil-argentina",
+    "sport": "football",
+    "aliases": ["brazil argentina", "argentina brazil", "superclasico americas"],
+    "entity_a": {
+      "name": "Brazil",
+      "short": "Brazil",
+      "accent": "#FFDF00",
+      "aliases": ["brazil", "brasil", "selecao", "seleção"],
+      "stats": {"World Cups": 5, "Copa America": 9, "Finalissima": 0, "Star count": "endless"}
+    },
+    "entity_b": {
+      "name": "Argentina",
+      "short": "Argentina",
+      "accent": "#75AADB",
+      "aliases": ["argentina", "albiceleste"],
+      "stats": {"World Cups": 3, "Copa America": 16, "Finalissima": 2, "Messi finals": 1}
+    },
+    "h2h": {"meetings": 110, "a_wins": 44, "b_wins": 41, "draws": 25, "label": "Senior meetings"},
+    "banter_hook": "Brazil have the five stars; Argentina have Messi's World Cup and the louder recent scar tissue.",
+    "facts": [
+      "Brazil have 5 World Cups, Argentina 3.",
+      "Argentina won the 2022 World Cup.",
+      "Copa America bragging rights lean Argentina in the all-time trophy count."
+    ]
+  },
+  {
+    "id": "india-australia",
+    "sport": "cricket",
+    "aliases": ["india australia", "australia india", "border gavaskar"],
+    "entity_a": {
+      "name": "India",
+      "short": "India",
+      "accent": "#138808",
+      "aliases": ["india", "ind", "team india", "men in blue"],
+      "stats": {"BGT home": "fortress", "World Cups": 2, "Tests in Aus '20-21": 1, "WTC final": 2}
+    },
+    "entity_b": {
+      "name": "Australia",
+      "short": "Australia",
+      "accent": "#FFCD00",
+      "aliases": ["australia", "aus", "aussies"],
+      "stats": {"World Cups": 6, "Away in India": "hard", "WTC titles": 1, "Pace": "heavy"}
+    },
+    "h2h": {"meetings": 110, "a_wins": 32, "b_wins": 45, "draws": 33, "label": "Test meetings"},
+    "banter_hook": "Australia own the global trophy cabinet; India own the pitches that make that cabinet feel very far away.",
+    "facts": [
+      "Australia lead the all-time Test series count.",
+      "India won the 2020-21 series in Australia.",
+      "The Border-Gavaskar Trophy has lived in Indian hands for long recent stretches."
+    ]
+  },
+  {
+    "id": "liverpool-manchester-city",
+    "sport": "football",
+    "aliases": ["liverpool manchester city", "liverpool city", "lfc mcfc"],
+    "entity_a": {
+      "name": "Liverpool",
+      "short": "Liverpool",
+      "accent": "#C8102E",
+      "aliases": ["liverpool", "lfc", "the reds"],
+      "stats": {"97-point finish": 1, "UCL": 6, "Premier League": 2, "2019 UCL": 1}
+    },
+    "entity_b": {
+      "name": "Manchester City",
+      "short": "City",
+      "accent": "#6CABDD",
+      "aliases": ["manchester city", "man city", "city", "mcfc"],
+      "stats": {"100-point season": 1, "UCL": 1, "Premier League": 8, "Treble": 1}
+    },
+    "h2h": {"meetings": 50, "a_wins": 18, "b_wins": 20, "draws": 12, "label": "Modern league meetings"},
+    "banter_hook": "Liverpool put up 97 points and still finished second; City answered with 100 and a treble.",
+    "facts": [
+      "Liverpool hit 97 points in 2018-19 and still finished second to City's 98.",
+      "City's 2017-18 side reached 100 points.",
+      "City won the 2023 Champions League and the treble."
+    ]
+  },
+  {
+    "id": "england-india",
+    "sport": "cricket",
+    "aliases": ["england india", "india england", "eng ind"],
+    "entity_a": {
+      "name": "England",
+      "short": "England",
+      "accent": "#CF142B",
+      "aliases": ["england", "eng"],
+      "stats": {"Home Tests": "swing", "2018 series": "won", "World Cups": 1, "Bazball": "experimental"}
+    },
+    "entity_b": {
+      "name": "India",
+      "short": "India",
+      "accent": "#138808",
+      "aliases": ["india", "ind", "team india", "men in blue"],
+      "stats": {"2021 Lords": "won", "Away series": "rare", "World Cups": 2, "Batting depth": "long"}
+    },
+    "h2h": {"meetings": 136, "a_wins": 51, "b_wins": 35, "draws": 50, "label": "Test meetings"},
+    "banter_hook": "England still lead the old Test ledger; India at Lord's in 2021 is the chapter they cannot skip.",
+    "facts": [
+      "England lead the all-time Test head-to-head.",
+      "India won at Lord's in 2021, their first win there.",
+      "India won the 2024 series in England after years of near-misses away."
+    ]
+  },
+  {
+    "id": "man-united-manchester-city",
+    "sport": "football",
+    "aliases": ["manchester derby", "united city", "man united man city"],
+    "entity_a": {
+      "name": "Manchester United",
+      "short": "United",
+      "accent": "#DA291C",
+      "aliases": ["manchester united", "man united", "man utd", "united", "mufc"],
+      "stats": {"League titles": 20, "UCL": 3, "Derby mood": "nostalgia", "Last league title": 2013}
+    },
+    "entity_b": {
+      "name": "Manchester City",
+      "short": "City",
+      "accent": "#6CABDD",
+      "aliases": ["manchester city", "man city", "city", "mcfc"],
+      "stats": {"League titles": 10, "UCL": 1, "Derby mood": "owners", "Treble": 1}
+    },
+    "h2h": {"meetings": 190, "a_wins": 78, "b_wins": 60, "draws": 52, "label": "Manchester derbies"},
+    "banter_hook": "United have the longer museum; City have the last decade, the treble, and the neighbors' silence.",
+    "facts": [
+      "United lead the all-time derby count.",
+      "City have owned the Premier League era and won the 2023 treble.",
+      "United's last league title remains 2012-13."
+    ]
+  }
+]

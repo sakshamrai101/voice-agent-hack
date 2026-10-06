@@ -1,35 +1,44 @@
 # BanterBox
 
-Ultra-low-latency voice sports pundit spec for a hackathon build.
+Live sports pundit you can talk to. One tap opens the mic, then the call is hands-free: duplex voice, a rivalry card, stadium stingers, and a latency HUD. Target time-to-first-audio is **under 600 ms** on a warm connection (`metrics.total_turnaround_ms`).
 
-This repo is the **implementation-ready coding prompt**, not the app itself. Hand [`BANTERBOX_IMPLEMENTATION_SPEC.md`](./BANTERBOX_IMPLEMENTATION_SPEC.md) to a coding model and it should scaffold the FastAPI + Vite React MVP from a greenfield tree.
-
-## GitHub repo name
-
-Use this exact name (matches the local folder):
+## Run
 
 ```
-voice-agent-hack
+# backend
+cd backend && python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+cp ../.env.example ../.env   # fill keys
+uvicorn app.main:app --reload --port 8000
+
+# frontend
+cd frontend && npm install && npm run dev
 ```
 
-## Push this folder to GitHub
+Open `http://localhost:5173`. Python 3.12. The server still boots if a vendor key is missing and shows an `error` in the HUD the first time that vendor is used.
 
-From this directory, after creating an empty GitHub repo named `voice-agent-hack` (no README, no .gitignore, no license):
+## Env
 
-```bash
-git remote add origin https://github.com/<YOUR_GITHUB_USERNAME>/voice-agent-hack.git
-git branch -M main
-git push -u origin main
+```
+DEEPGRAM_API_KEY=
+OPENAI_API_KEY=
+CARTESIA_API_KEY=
+CARTESIA_VOICE_DRAMATIC=
+CARTESIA_VOICE_SPARRING=
+CARTESIA_VOICE_ANALYST=
+BACKEND_HOST=0.0.0.0
+BACKEND_PORT=8000
+CORS_ORIGINS=http://localhost:5173
 ```
 
-Or create the GitHub repo and push in one shot (GitHub CLI):
+Empty Cartesia voice ids fall back to a Sonic English voice.
 
-```bash
-gh repo create voice-agent-hack --private --source=. --remote=origin --push
-```
+## Demo script
 
-Drop `--private` if you want it public.
+1. “Compare Messi and Ronaldo” → head-to-head card and spoken banter.
+2. “Arsenal never bottled a title” → clapback with the 2022-23 lead and the Leicester season.
+3. “Commentate a 90th-minute bicycle kick winner” → stadium roar and a dramatic call.
 
-## What to build from
+Talk over the reply to barge in. Playback stops locally; the server cancels that turn.
 
-Open [`BANTERBOX_IMPLEMENTATION_SPEC.md`](./BANTERBOX_IMPLEMENTATION_SPEC.md) and run it as the system/user prompt for a coding agent. Follow it exactly: stack, file tree, WebSocket frames, tools, audio buffers, and spoken-first prompts are locked in that file.
+The build spec lives in [`BANTERBOX_IMPLEMENTATION_SPEC.md`](./BANTERBOX_IMPLEMENTATION_SPEC.md).
