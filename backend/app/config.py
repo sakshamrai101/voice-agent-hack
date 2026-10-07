@@ -18,7 +18,7 @@ class Settings(BaseSettings):
     )
 
     deepgram_api_key: str = ""
-    openai_api_key: str = ""
+    gemini_api_key: str = ""
     cartesia_api_key: str = ""
     cartesia_voice_dramatic: str = ""
     cartesia_voice_sparring: str = ""

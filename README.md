@@ -21,7 +21,7 @@ Open `http://localhost:5173`. Python 3.12. The server still boots if a vendor ke
 
 ```
 DEEPGRAM_API_KEY=
-OPENAI_API_KEY=
+GEMINI_API_KEY=
 CARTESIA_API_KEY=
 CARTESIA_VOICE_DRAMATIC=
 CARTESIA_VOICE_SPARRING=

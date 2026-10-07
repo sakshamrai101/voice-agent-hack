@@ -13,6 +13,9 @@ from app.config import settings
 
 logger = logging.getLogger(__name__)
 
+GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai/"
+GEMINI_MODEL = "gemini-3.8-flash"
+
 EpochCheck = Callable[[], bool]
 OnDelta = Callable[[str], Awaitable[None]]
 OnToolCalls = Callable[[list[dict[str, str]], list[dict]], Awaitable[None]]
@@ -32,23 +35,35 @@ _client: AsyncOpenAI | None = None
 def get_client() -> AsyncOpenAI:
     global _client
     if _client is None:
-        _client = AsyncOpenAI(api_key=settings.openai_api_key, max_retries=0, timeout=8.0)
+        _client = AsyncOpenAI(
+            api_key=settings.gemini_api_key,
+            base_url=GEMINI_BASE_URL,
+            max_retries=0,
+            timeout=8.0,
+        )
     return _client
 
 
-def _accumulate_tool_calls(tool_calls: dict[int, dict[str, str]], deltas: list[Any]) -> None:
+def _accumulate_tool_calls(tool_calls: dict[int, dict[str, Any]], deltas: list[Any]) -> None:
     for tc in deltas:
         idx = int(tc.index)
-        slot = tool_calls.setdefault(idx, {"id": "", "name": "", "arguments": ""})
-        if tc.id:
-            slot["id"] = tc.id
-        function = tc.function
-        if function is None:
-            continue
-        if function.name:
-            slot["name"] = function.name
-        if function.arguments:
-            slot["arguments"] += function.arguments
+        slot = tool_calls.setdefault(
+            idx,
+            {"id": "", "type": "function", "function": {"name": "", "arguments": ""}},
+        )
+        dumped = tc.model_dump(exclude_none=True) if hasattr(tc, "model_dump") else {}
+        if dumped.get("id"):
+            slot["id"] = dumped["id"]
+        if dumped.get("type"):
+            slot["type"] = dumped["type"]
+        function = dumped.get("function") or {}
+        if function.get("name"):
+            slot["function"]["name"] = function["name"]
+        if function.get("arguments"):
+            slot["function"]["arguments"] += function["arguments"]
+        for key, value in dumped.items():
+            if key not in {"id", "index", "type", "function"}:
+                slot[key] = value
 
 
 async def stream_turn(
@@ -61,26 +76,27 @@ async def stream_turn(
     on_tools_started: OnToolsStarted | None = None,
 ) -> None:
     """Stream a turn. Tool rounds hand control to on_tool_calls, then continue."""
-    if not settings.openai_api_key:
-        raise LLMCallError("OPENAI_API_KEY is not set", recoverable=False)
+    if not settings.gemini_api_key:
+        raise LLMCallError("GEMINI_API_KEY is not set", recoverable=False)
 
     client = get_client()
     for _round in range(4):
         if not epoch_check():
             return
-        tool_calls: dict[int, dict[str, str]] = {}
+        tool_calls: dict[int, dict[str, Any]] = {}
         content_parts: list[str] = []
         tools_signaled = False
         stream = None
         try:
             async with asyncio.timeout(8):
                 stream = await client.chat.completions.create(
-                    model="gpt-4o-mini",
+                    model=GEMINI_MODEL,
                     messages=messages,
                     tools=tools,
                     tool_choice="auto",
                     temperature=temperature_for(),
-                    max_tokens=120,
+                    max_tokens=512,
+                    reasoning_effort="low",
                     stream=True,
                 )
                 async for chunk in stream:
@@ -104,11 +120,11 @@ async def stream_turn(
         except asyncio.CancelledError:
             raise
         except TimeoutError as exc:
-            raise LLMCallError("OpenAI stream timed out") from exc
+            raise LLMCallError("Gemini stream timed out") from exc
         except LLMCallError:
             raise
         except Exception as exc:
-            logger.exception("openai stream failed")
+            logger.exception("gemini stream failed")
             raise LLMCallError(str(exc)) from exc
         finally:
             if stream is not None:
@@ -119,7 +135,7 @@ async def stream_turn(
                         if asyncio.iscoroutine(result):
                             await result
                     except Exception:
-                        logger.debug("openai stream close failed", exc_info=True)
+                        logger.debug("gemini stream close failed", exc_info=True)
 
         if not epoch_check():
             return
@@ -127,26 +143,26 @@ async def stream_turn(
             return
 
         assembled = [tool_calls[idx] for idx in sorted(tool_calls)]
+        wire_calls: list[dict[str, Any]] = []
+        callback_calls: list[dict[str, str]] = []
         for idx, tc in enumerate(assembled):
-            if not tc["id"]:
-                tc["id"] = f"call_{idx}"
-            if not tc["arguments"]:
-                tc["arguments"] = "{}"
+            function = tc.get("function") or {}
+            name = function.get("name") or ""
+            arguments = function.get("arguments") or "{}"
+            call_id = tc.get("id") or f"call_{idx}"
+            tc["id"] = call_id
+            tc["type"] = tc.get("type") or "function"
+            tc["function"] = {"name": name, "arguments": arguments}
+            wire_calls.append(tc)
+            callback_calls.append({"id": call_id, "name": name, "arguments": arguments})
         messages.append(
             {
                 "role": "assistant",
                 "content": "".join(content_parts) or None,
-                "tool_calls": [
-                    {
-                        "id": tc["id"],
-                        "type": "function",
-                        "function": {"name": tc["name"], "arguments": tc["arguments"]},
-                    }
-                    for tc in assembled
-                ],
+                "tool_calls": wire_calls,
             }
         )
-        await on_tool_calls(assembled, messages)
+        await on_tool_calls(callback_calls, messages)
         if not epoch_check():
             return
     logger.info("stopped after max tool rounds")
